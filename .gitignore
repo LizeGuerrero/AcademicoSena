@@ -1,0 +1,48 @@
+# Maven / Java
+target/
+build/
+out/
+*.class
+*.jar
+*.war
+*.ear
+
+# Eclipse
+.classpath
+.project
+.settings/
+
+# IntelliJ
+/.idea/
+*.iml
+
+# VS Code
+.vscode/
+
+# Mac
+.DS_Store
+
+# Logs
+*.log
+
+# Temporary files
+*~
+*.tmp
+*.swp
+
+# Maven Wrapper
+!.mvn/wrapper/maven-wrapper.jar
+.mvn/wrapper/maven-wrapper.jar
+
+# Ignore OS files
+Thumbs.db
+
+# Persistence/hibernate configs that may contain credentials - keep templates only
+# (If you want to keep local dev configs, add them to a separate file not tracked)
+
+# Ignore real local persistence/hibernate configs (keep examples tracked)
+src/main/resources/META-INF/persistence.xml
+src/main/resources/hibernate.cfg.xml
+
+# Ignore compiled classes directory sometimes present
+/classes/
