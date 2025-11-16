@@ -1,0 +1,117 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0"  
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"  
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0  
+             http://maven.apache.org/xsd/maven-4.0.0.xsd">  
+    <modelVersion>4.0.0</modelVersion>  
+
+    <groupId>com.academico</groupId>  
+    <artifactId>AcademicoSena</artifactId>  
+    <version>1.0</version>  
+    <packaging>war</packaging>  
+
+    <name>AcademicoSena-1.0</name>  
+
+    <properties>  
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>  
+        <maven.compiler.source>21</maven.compiler.source>  
+        <maven.compiler.target>21</maven.compiler.target>  
+        <!-- Jakarta EE versión estable -->
+        <jakartaee.version>11.0.0</jakartaee.version>  
+        <!-- Versión de la API de persistencia -->
+        <jakarta.persistence.version>3.2.0</jakarta.persistence.version>  
+        <!-- Hibernate -->
+        <hibernate.version>7.1.0.Final</hibernate.version>  
+        <!-- MySQL Connector -->
+        <mysql.connector.version>8.0.33</mysql.connector.version>  
+        <!-- JSON-B / Yasson -->
+        <jakarta.jsonb.version>3.0.0</jakarta.jsonb.version>  
+        <yasson.version>3.0.3</yasson.version>  
+        <!-- Logging -->
+        <slf4j.version>2.0.9</slf4j.version>  
+        <logback.version>1.4.14</logback.version>  
+        <!-- Testing -->
+        <junit.version>4.13.2</junit.version>  
+    </properties>  
+
+    <dependencies>  
+        <!-- Jakarta EE API (solo como API, lo provee Tomcat u otro contenedor) -->  
+        <dependency>  
+            <groupId>jakarta.platform</groupId>  
+            <artifactId>jakarta.jakartaee-api</artifactId>  
+            <version>${jakartaee.version}</version>  
+            <scope>provided</scope>  
+        </dependency>  
+
+        <!-- Jakarta Persistence API explicita -->  
+        <dependency>  
+            <groupId>jakarta.persistence</groupId>  
+            <artifactId>jakarta.persistence-api</artifactId>  
+            <version>${jakarta.persistence.version}</version>  
+        </dependency>  
+
+        <!-- Hibernate ORM -->  
+        <dependency>  
+            <groupId>org.hibernate.orm</groupId>  
+            <artifactId>hibernate-core</artifactId>  
+            <version>${hibernate.version}</version>  
+        </dependency>  
+
+        <!-- MySQL Connector -->  
+        <dependency>  
+            <groupId>com.mysql</groupId>  
+            <artifactId>mysql-connector-j</artifactId>  
+            <version>${mysql.connector.version}</version>  
+        </dependency>  
+
+        <!-- JSON-B (serialización) -->  
+        <dependency>  
+            <groupId>jakarta.json.bind</groupId>  
+            <artifactId>jakarta.json.bind-api</artifactId>  
+            <version>${jakarta.jsonb.version}</version>  
+        </dependency>  
+        <dependency>  
+            <groupId>org.eclipse</groupId>  
+            <artifactId>yasson</artifactId>  
+            <version>${yasson.version}</version>  
+        </dependency>  
+
+        <!-- Logging -->  
+        <dependency>  
+            <groupId>org.slf4j</groupId>  
+            <artifactId>slf4j-api</artifactId>  
+            <version>${slf4j.version}</version>  
+        </dependency>  
+        <dependency>  
+            <groupId>ch.qos.logback</groupId>  
+            <artifactId>logback-classic</artifactId>  
+            <version>${logback.version}</version>  
+        </dependency>  
+
+        <!-- Testing -->  
+        <dependency>  
+            <groupId>junit</groupId>  
+            <artifactId>junit</artifactId>  
+            <version>${junit.version}</version>  
+            <scope>test</scope>  
+        </dependency>  
+    </dependencies>  
+
+    <build>  
+        <plugins>  
+            <plugin>  
+                <groupId>org.apache.maven.plugins</groupId>  
+                <artifactId>maven-compiler-plugin</artifactId>  
+                <version>3.12.1</version>  
+                <configuration>  
+                    <source>${maven.compiler.source}</source>  
+                    <target>${maven.compiler.target}</target>  
+                </configuration>  
+            </plugin>  
+            <plugin>  
+                <groupId>org.apache.maven.plugins</groupId>  
+                <artifactId>maven-war-plugin</artifactId>  
+                <version>3.4.0</version>  
+            </plugin>  
+        </plugins>  
+    </build>  
+</project>  
