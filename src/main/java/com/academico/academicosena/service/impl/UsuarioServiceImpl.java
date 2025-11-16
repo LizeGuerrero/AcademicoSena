@@ -4,6 +4,7 @@ import com.academico.academicosena.dao.UsuarioDAO;
 import com.academico.academicosena.dao.impl.UsuarioDaoImpl;
 import com.academico.academicosena.entity.Usuario;
 import com.academico.academicosena.service.UsuarioService;
+import com.academico.academicosena.util.PasswordUtils;
 
 import java.util.List;
 
@@ -22,11 +23,22 @@ public class UsuarioServiceImpl implements UsuarioService {
             throw new RuntimeException("El número de documento ya está registrado");
         }
 
+        // Hashear la contraseña antes de guardar
+        if (usuario.getPassword() != null && !usuario.getPassword().isEmpty()) {
+            String hashed = PasswordUtils.hashPassword(usuario.getPassword());
+            usuario.setPassword(hashed);
+        }
+
         return usuarioDAO.guardar(usuario);
     }
 
     @Override
     public Usuario actualizar(Usuario usuario) {
+        // Si se proporciona una nueva contraseña en texto plano, hashearla
+        String pw = usuario.getPassword();
+        if (pw != null && !pw.isEmpty() && !(pw.startsWith("$2a$") || pw.startsWith("$2b$") || pw.startsWith("$2y$"))) {
+            usuario.setPassword(PasswordUtils.hashPassword(pw));
+        }
         return usuarioDAO.actualizar(usuario);
     }
 

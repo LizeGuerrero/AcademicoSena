@@ -102,18 +102,20 @@ public class UsuarioDaoImpl implements UsuarioDAO {
             Query<Usuario> q = session.createQuery(
                 "FROM Usuario u WHERE u.tipoDocumento = :td " +
                 "AND u.numeroDocumento = :nd " +
-                "AND u.password = :pw " +
-                "AND u.estado = :estado",  // mejor usar parámetro para estado
+                "AND u.estado = :estado",
                 Usuario.class
             );
             q.setParameter("td", tipoDocumento);
             q.setParameter("nd", numeroDocumento);
-            q.setParameter("pw", password);
             q.setParameter("estado", EstadoUsuario.ACTIVO);
 
             Usuario u = q.uniqueResult();
 
             if (u != null) {
+                // Verificar contraseña hasheada
+                boolean ok = com.academico.academicosena.util.PasswordUtils.verifyPassword(password, u.getPassword());
+                if (!ok) return null;
+
                 Transaction tx = session.beginTransaction();
                 u.setUltimoAcceso(java.time.LocalDateTime.now());
                 session.merge(u);
